@@ -3,8 +3,9 @@ Project repository for DSA4262 Sense-making Case Analysis Health and Medicine.
 
 ## Content
 - [Introduction](#Introduction)
-- [Installation](#Installation)
+- [Getting started](#Getting-started)
 - [Usage](#Usage)
+- [Contributors](#Contributors)
 - [Contributing](#Contributing)
 - [License](#License)
 
@@ -13,10 +14,42 @@ Project repository for DSA4262 Sense-making Case Analysis Health and Medicine.
 This project aims to use machine learning to identify m6A RNA modifications from direct RNA-Seq data.
 
 
-## Installation
+## Getting started
+### Prerequisites
+- Python 3.8
+
+### Dataset and preparation
+1. Download data files (`data.zip`, `data.info`) from [LumiNUS](https://luminus.nus.edu.sg).
+2. Clone the repository.
+```bash
+git clone https://github.com/HaotingS/dsa4262_project.git
+cd dsa4262_project
+```
+3. Make a folder `data` to store data files needed for the project.
+```bash
+mkdir data
+mv <path-to-data.zip> data/data.zip
+mv <path-to-data.info> data/data.info
+unzip data.zip  # this will give you data.json
+```
+4. Run [`parse_data.ipynb`](notebooks/parse_data.ipynb) to parse `data.json` into `data.csv`.
+ 
+### Configuration
 
 
 ## Usage
+### Train
+```
+python train.py
+```
+
+### Evaluation
+```
+python test.py
+```
+- `some parameter` explaination bla bla bla
+
+## Contributors
 
 
 ## Contributing
