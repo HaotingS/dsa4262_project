@@ -18,7 +18,13 @@ This project aims to use machine learning to identify m6A RNA modifications from
 ### Prerequisites
 - Python 3.8
 
-### Dataset and preparation
+### Configuration
+1. Install Python packages
+```bash
+pip install -r requirements.txt
+```
+
+### Prepare dataset
 1. Download data files (`data.zip`, `data.info`) from [LumiNUS](https://luminus.nus.edu.sg).
 2. Clone the repository.
 ```bash
@@ -33,8 +39,6 @@ mv <path-to-data.info> data/data.info
 unzip data.zip  # this will give you data.json
 ```
 4. Run [`parse_data.ipynb`](notebooks/parse_data.ipynb) to parse `data.json` into `data.csv`.
- 
-### Configuration
 
 
 ## Usage
