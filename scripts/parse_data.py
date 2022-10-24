@@ -20,7 +20,7 @@ with open(args.file, 'rb') as f:
                         temp_lst.append(row1)
 
 df = pd.DataFrame(temp_lst, columns=['transcript_id', 'transcript_position', 'nucleotides', 'val'])
-temp = pd.DataFrame(df.val.tolist(), index= df.index)
+temp = pd.DataFrame(df.val.tolist(), index=df.index,  columns=['0', '1', '2', '3', '4', '5', '6', '7', '8'])
 
 df = pd.concat([df, temp], axis=1)
 df.drop(columns=['val'], inplace=True)
