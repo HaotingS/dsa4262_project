@@ -38,7 +38,10 @@ mv <path-to-data.zip> data/data.zip
 mv <path-to-data.info> data/data.info
 unzip data.zip  # this will give you data.json
 ```
-4. Run [`parse_data.ipynb`](notebooks/parse_data.ipynb) to parse `data.json` into `data.csv`.
+4. Run [`parse_data.py`](scripts/parse_data.py) to parse `data.json` into `data.csv`.
+```bash
+python3 scripts/parse_data.py -f data/data.json -s data/data.csv
+```
 
 
 ## Usage
