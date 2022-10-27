@@ -71,7 +71,7 @@ df['score'] = yhat1_probs
 
 print("[INFO] Saving predictions...")
 df_res = df[['transcript_id', 'transcript_position0', 'score']]
-df_res.rename(columns={"transcript_position0": "transcript_position"}, inplace=True)
+df_res.rename(columns={"transcript_position0": "transcript_position"}, axis=1, inplace=True)
 df_res.to_csv(args.save_path, index=False)
 
 print("[INFO] Done.")
