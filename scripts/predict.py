@@ -10,13 +10,12 @@ args = ap.parse_args()
 
 # Read in data json and convert it into a dataframe
 df = get_data_dataframe(args.data)
-df["str_transcript_position"] = df["transcript_position"].apply(str)
 
 # Process the dataframe to generate new features
-df, new_cols = process_data_dataframe(df)
+df, features = process_data_dataframe(df)
 
 # Selecting relevant features
-Xte = df[["transcript_position", "0", "1", "2", "3", "4", "5", "6", "7", "8"] + list(new_cols)]
+Xte = df[features]
 
 print("[INFO] Loading model...")
 model = XGBClassifier()
@@ -29,8 +28,7 @@ yhat1_probs = yhat_probs[:, 1]
 df["score"] = yhat1_probs
 
 print(f"[INFO] Saving predictions at {args.save_path}...")
-df_res = df[["transcript_id", "str_transcript_position", "score"]]
-df_res = df_res.rename(columns={"str_transcript_position": "transcript_position"})
+df_res = df[["transcript_id", "transcript_position", "score"]]
 df_res.to_csv(args.save_path, index=False)
 
 print("[INFO] Done.")

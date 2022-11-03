@@ -1,3 +1,4 @@
+import os
 import argparse
 from collections import Counter
 from math import ceil
@@ -13,18 +14,15 @@ args = ap.parse_args()
 # Read in data json and convert it into a dataframe
 df = get_data_dataframe(args.data)
 
+# Process the dataframe to generate new features
+df, features = process_data_dataframe(df)
+
 # Merge with labels
 df_info = pd.read_csv(args.labels)
 df = df.merge(df_info, how="left", on=["transcript_id", "transcript_position"])
 
-# Drop duplicates
-df.drop_duplicates(keep="first", inplace=True, ignore_index=True)
-
-# Process the dataframe to generate new features
-df, new_cols = process_data_dataframe(df)
-
 # Select training features and labels
-Xtr = df[["transcript_position", "0", "1", "2", "3", "4", "5", "6", "7", "8"] + list(new_cols)]
+Xtr = df[features]
 ytr = df["label"]
 
 print("[INFO] Initializing model...")
@@ -40,8 +38,7 @@ model = XGBClassifier(
     objective="binary:logistic",
     scale_pos_weight = ceil(class_ratio),
     max_delta_step=1,
-    seed=42,
-    verbosity=1
+    seed=42
 )
 
 print("[INFO] Fitting model...")

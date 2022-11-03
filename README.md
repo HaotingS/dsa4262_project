@@ -54,7 +54,7 @@ The scripts below trains and predicts on the original datasets. They might take 
 
 ### Train
 ```bash
-python3 scripts/train_xgb.py -d data/data.json -l data/data.info -s outputs/xgb.model
+python3 scripts/train.py -d data/data.json -l data/data.info -s outputs/xgb.model
 ```
 * `-d data/data.json` specifies the RNA-Seq data.
 * `-l data/data.info` specifies the labels.
@@ -63,9 +63,9 @@ python3 scripts/train_xgb.py -d data/data.json -l data/data.info -s outputs/xgb.
 ### Predict
 Use a trained model to predict on `dataset1.json`, `dataset2.json`, `dataset3.json`.
 ```bash
-python3 scripts/predict_xgb.py -d data/dataset1.json -m outputs/xgb.model -s outputs/teamgenono_dataset1.csv
-python3 scripts/predict_xgb.py -d data/dataset2.json -m outputs/xgb.model -s outputs/teamgenono_dataset2.csv
-python3 scripts/predict_xgb.py -d data/dataset3.json -m outputs/xgb.model -s outputs/teamgenono_dataset3.csv
+python3 scripts/predict.py -d data/dataset1.json -m outputs/xgb.model -s outputs/teamgenono_dataset1.csv
+python3 scripts/predict.py -d data/dataset2.json -m outputs/xgb.model -s outputs/teamgenono_dataset2.csv
+python3 scripts/predict.py -d data/dataset3.json -m outputs/xgb.model -s outputs/teamgenono_dataset3.csv
 ```
 * `-d data/dataset<n>.json` specifies the n-th test dataset.
 * `-m outputs/xgb.model` specifies the model to use for prediction.

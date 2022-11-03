@@ -1,7 +1,5 @@
 import json
-import numpy as np
 import pandas as pd
-from sklearn import preprocessing
 from tqdm import tqdm
 
 def get_data_dataframe(path):
@@ -28,20 +26,17 @@ def get_data_dataframe(path):
 def process_data_dataframe(df):
     print("[INFO] Preparing features...")
 
-    # Group by and find mean for each group
-    df = df.groupby(by=["transcript_id", "str_transcript_position" if "str_transcript_position" in df.columns else "transcript_position", "nucleotides"]).mean(numeric_only=True)
-    df.reset_index(inplace=True)
+    mean_df = df.groupby(by=['transcript_id', 'transcript_position', 'nucleotides']).mean().reset_index()
 
-    # Scale numerical variables
-    num_vars = df.select_dtypes(include=np.number).columns
-    scaler = preprocessing.MinMaxScaler(feature_range=(0, 1))
-    df[num_vars]= scaler.fit_transform(df[num_vars])
+    min_df = df.groupby(by=['transcript_id', 'transcript_position', 'nucleotides']).min().reset_index()
+    min_df.columns = ['transcript_id', 'transcript_position', 'nucleotides', '9', '10', '11', '12', '13', '14', '15', '16', '17']
 
-    # Split `nucleotides` into characters and make it into indicator variables
-    nucleotides_df = df["nucleotides"].str.split(pat="", expand=True)
-    nucleotides_df.drop(columns=[nucleotides_df.columns[0], nucleotides_df.columns[-1]], inplace=True)
-    nucleotides_df = nucleotides_df.add_prefix("p")
-    nucleotides_df = pd.get_dummies(nucleotides_df)
-    df = pd.concat([df, nucleotides_df], axis=1)
+    max_df = df.groupby(by=['transcript_id', 'transcript_position', 'nucleotides']).max().reset_index()
+    max_df.columns = ['transcript_id', 'transcript_position', 'nucleotides', '18', '19', '20', '21', '22', '23', '24', '25', '26']
 
-    return df, nucleotides_df.columns
+    complete_df = mean_df.merge(min_df).merge(max_df)
+    complete_df = complete_df.astype({"transcript_position": "int"})
+
+    feature_names = [str(feature) for feature in range(27)]
+
+    return complete_df, feature_names
