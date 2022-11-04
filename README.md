@@ -17,15 +17,17 @@ This project aims to use machine learning to identify m6A RNA modifications from
 - Python 3.8.10
 - If you are using Amazon EC2, you need the instance type to be **t3.xlarge** or above
 
-Tested on Ubuntu 20.04.
-
 ### Configuration
 1. Clone the repository.
 ```bash
 git clone https://github.com/HaotingS/dsa4262_project.git
 cd dsa4262_project
 ```
-2. Install Python packages.
+2. Create a folder for storing outputs.
+```bash
+mkdir outputs
+```
+3. Install Python packages.
 ```bash
 sudo apt install python3-pip
 pip install -r requirements.txt
@@ -41,27 +43,28 @@ wget -O data.tgz https://www.dropbox.com/s/j24g0e4fg7kqj43/data.tgz?dl=1
 tar -xzvf data.tgz data && rm data.tgz
 ```
 
+## Usage
+The scripts below parse, train and predict on the original datasets. They might take a longer time to run. We have provided a sample data `sample_data.json` at the root of the project directory for you to test run first before running on the full dataset.
+
 ### Preprocess dataset (optional)
-Run [`parse_data.py`](scripts/parse_data.py) to parse `data.json` into `data.csv`. `data.csv` is used in some of the notebooks for analysis and modeling.
+Parse `data.json` into `data.csv`.
 ```bash
 python3 scripts/parse_data.py -f data/data.json -s data/data.csv
 ```
 * `-f data/data.json` specifies the RNA-Seq data.
 * `-s data/data.csv` specifies the resulting csv file.
 
-## Usage
-The scripts below trains and predicts on the original datasets. They might take a longer time to run. We have provided a sample data `sample_data.json` at the root of the project directory for you to test run first before running on the full dataset.
-
 ### Train
+Train model using `data.json` and `data.info`.
 ```bash
 python3 scripts/train.py -d data/data.json -l data/data.info -s outputs/xgb.model
 ```
 * `-d data/data.json` specifies the RNA-Seq data.
 * `-l data/data.info` specifies the labels.
-* `-s outputs/xgb.model` specifies the model output.
+* `-s outputs/xgb.model` specifies the resulting model.
 
 ### Predict
-Use a trained model to predict on `dataset1.json`, `dataset2.json`, `dataset3.json`.
+Use trained model to predict on `dataset1.json`, `dataset2.json`, `dataset3.json`.
 ```bash
 python3 scripts/predict.py -d data/dataset1.json -m outputs/xgb.model -s outputs/teamgenono_dataset1.csv
 python3 scripts/predict.py -d data/dataset2.json -m outputs/xgb.model -s outputs/teamgenono_dataset2.csv
