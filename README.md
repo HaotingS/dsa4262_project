@@ -17,6 +17,8 @@ This project aims to use machine learning to identify m6A RNA modifications from
 - Python 3.8.10
 - If you are using Amazon EC2, you need the instance type to be **t3.xlarge** or above
 
+- Tested on Ubuntu 20.04.
+
 ### Configuration
 1. Clone the repository.
 ```bash
