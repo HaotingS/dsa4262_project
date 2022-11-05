@@ -23,11 +23,15 @@ This project aims to use machine learning to identify m6A RNA modifications from
 git clone https://github.com/HaotingS/dsa4262_project.git
 cd dsa4262_project
 ```
-2. Create a folder for storing outputs.
+2. Make sure you are on the right branch, `demo`.
+```bash
+git checkout demo
+```
+3. Create a folder for storing outputs.
 ```bash
 mkdir outputs
 ```
-3. Install Python packages.
+4. Install Python packages.
 ```bash
 sudo apt install python3-pip
 pip install -r requirements.txt
