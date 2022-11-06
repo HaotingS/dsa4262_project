@@ -36,7 +36,7 @@ mkdir outputs
 4. Install Python packages.
 ```bash
 sudo apt install -y python3-pip
-pip install -r requirements.txt
+sudo pip install -r requirements.txt
 ```
 
 ### Get dataset
