@@ -50,10 +50,10 @@ tar -xzvf data.tgz data && rm data.tgz
 ```
 
 ## Usage
-The scripts below parse, train and predict on the original datasets. They might take a longer time to run. We have provided a sample data `sample_data.json` at the root of the project directory for you to test run first before running on the full dataset.
+The scripts below parse, train and predict on the full datasets. They might take a long time to run. Therefore, we provide sample data `sample_data.json` and `sample_data.info` at the project root for you to test before running on the full datasets.
 
 ### Preprocess dataset (optional)
-Parse `data.json` into `data.csv`.
+Parse `data.json` into `data.csv`. `data.csv` is used only in some [notebooks](./notebooks).
 ```bash
 python3 scripts/parse_data.py -f data/data.json -s data/data.csv
 ```
