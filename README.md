@@ -53,7 +53,8 @@ The scripts below parse, train and predict on the full datasets. They might take
 ### Preprocess dataset (optional)
 Parse `data.json` into `data.csv`. `data.csv` is used only in some [notebooks](./notebooks) (**only on main branch**).
 ```bash
-python3 scripts/parse_data.py -f data/data.json -s data/data.csv
+python3 scripts/parse_data.py -f data/data.json -s data/data.csv      # full train dataset
+python3 scripts/parse_data.py -f sample_data.json -s sample_data.csv  # sample dataset
 ```
 * `-f data/data.json` specifies the RNA-Seq data.
 * `-s data/data.csv` specifies the resulting csv file.
@@ -61,7 +62,8 @@ python3 scripts/parse_data.py -f data/data.json -s data/data.csv
 ### Train
 Train model using `data.json` and `data.info`.
 ```bash
-python3 scripts/train.py -d data/data.json -l data/data.info -s outputs/xgb.model
+python3 scripts/train.py -d data/data.json -l data/data.info -s outputs/xgb.model             # full train dataset
+python3 scripts/train.py -d sample_data.json -l sample_data.info -s outputs/sample_xgb.model  # sample dataset
 ```
 * `-d data/data.json` specifies the RNA-Seq data.
 * `-l data/data.info` specifies the labels.
@@ -70,9 +72,10 @@ python3 scripts/train.py -d data/data.json -l data/data.info -s outputs/xgb.mode
 ### Predict
 Use trained model to predict on `dataset1.json`, `dataset2.json`, `dataset3.json`.
 ```bash
-python3 scripts/predict.py -d data/dataset1.json -m outputs/xgb.model -s outputs/teamgenono_dataset1.csv
-python3 scripts/predict.py -d data/dataset2.json -m outputs/xgb.model -s outputs/teamgenono_dataset2.csv
-python3 scripts/predict.py -d data/dataset3.json -m outputs/xgb.model -s outputs/teamgenono_dataset3.csv
+python3 scripts/predict.py -d data/dataset1.json -m outputs/xgb.model -s outputs/teamgenono_dataset1.csv  # full test dataset 1
+python3 scripts/predict.py -d data/dataset2.json -m outputs/xgb.model -s outputs/teamgenono_dataset2.csv  # full test dataset 2
+python3 scripts/predict.py -d data/dataset3.json -m outputs/xgb.model -s outputs/teamgenono_dataset3.csv  # full test dataset 3
+python3 scripts/predict.py -d sample_data.json -m outputs/sample_xgb.model -s outputs/sample_dataset.csv  # sample dataset
 ```
 * `-d data/dataset<n>.json` specifies the n-th test dataset.
 * `-m outputs/xgb.model` specifies the model to use for prediction.
