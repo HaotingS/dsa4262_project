@@ -23,6 +23,7 @@ model.load_model(args.model)
 
 print("[INFO] Running inference...")
 yhat_probs = model.predict_proba(Xte, iteration_range=(0, model.best_iteration + 1))
+yhat = model.predict(Xte, iteration_range=(0, model.best_iteration + 1))
 yhat1_probs = yhat_probs[:, 1]
 df["score"] = yhat1_probs
 
