@@ -2,22 +2,22 @@
 Project repository for DSA4262 Sense-making Case Analysis Health and Medicine. 
 
 ## Content
-- [Introduction](#Introduction)
-- [Getting started](#Getting-started)
-- [Usage](#Usage)
-- [Contributing](#Contributing)
-- [License](#License)
+* [Introduction](#Introduction)
+* [Getting started](#Getting-started)
+* [Usage](#Usage)
+* [Contributing](#Contributing)
+* [Authors](#Authors)
+* [License](#License)
 
 ## Introduction
 This project aims to use machine learning to identify m6A RNA modifications from direct RNA-Seq data.
 
 ## Getting started
-
 ### Prerequisites
-- Python 3.8.10
-- If you are using Amazon EC2, you need the instance type to be **t3.xlarge** or above
+* Python 3.8.10
+* For Amazon EC2, use instance type **t3.xlarge** & above
 
-- Tested on Ubuntu 20.04.
+Tested on Ubuntu 20.04.
 
 ### Configuration
 1. Clone the repository.
@@ -89,6 +89,13 @@ python3 scripts/predict.py -d data/dataset3.json -m outputs/xgb.model -s outputs
 3. Commit your changes: `git commit -am 'added some feature'`.
 4. Push to the branch: `git push origin my-new-branch`.
 5. Submit a pull request. :smile:
+
+## Authors
+* [:octocat: @samtjong23](https://github.com/samtjong23)
+* [:octocat: @y33-j3T](https://github.com/y33-j3T)
+* [:octocat: @snah321](https://github.com/snah321)
+* [:octocat: @HaotingS](https://github.com/HaotingS)
+* [:octocat: @kaychiiiii](https://github.com/kaychiiiii)
 
 ## License
 DSA4262 Project is licensed under the [MIT license](./LICENSE).
