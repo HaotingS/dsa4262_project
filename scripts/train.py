@@ -31,8 +31,7 @@ print("[INFO] Initializing model...")
 count_label = Counter(ytr)
 
 # Estimate scale_pos_weight value
-# If the dataset is missing any classes, we use the label ratio from data.json as the default value
-class_ratio = count_label[0] / count_label[1] if len(count_label) == 2 else 21.25351598173516
+class_ratio = count_label[0] / count_label[1]
 
 # Define model
 model = XGBClassifier(
