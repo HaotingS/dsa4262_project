@@ -2,20 +2,20 @@
 Project repository for DSA4262 Sense-making Case Analysis Health and Medicine. 
 
 ## Content
-- [Introduction](#Introduction)
-- [Getting started](#Getting-started)
-- [Usage](#Usage)
-- [Contributing](#Contributing)
-- [License](#License)
+* [Introduction](#Introduction)
+* [Getting started](#Getting-started)
+* [Usage](#Usage)
+* [Contributing](#Contributing)
+* [Authors](#Authors)
+* [License](#License)
 
 ## Introduction
 This project aims to use machine learning to identify m6A RNA modifications from direct RNA-Seq data.
 
 ## Getting started
-
 ### Prerequisites
-- Python 3.8.10
-- If you are using Amazon EC2, you need the instance type to be **t3.xlarge** or above
+* Python 3.8.10
+* For Amazon EC2, use instance type **t3.xlarge** & above
 
 ### Configuration
 1. Clone the repository.
@@ -33,8 +33,8 @@ mkdir outputs
 ```
 4. Install Python packages.
 ```bash
-sudo apt install python3-pip
-pip install -r requirements.txt
+sudo apt install -y python3-pip
+sudo pip install -r requirements.txt
 ```
 
 ### Get dataset
@@ -48,10 +48,10 @@ tar -xzvf data.tgz data && rm data.tgz
 ```
 
 ## Usage
-The scripts below parse, train and predict on the original datasets. They might take a longer time to run. We have provided a sample data `sample_data.json` at the root of the project directory for you to test run first before running on the full dataset.
+The scripts below parse, train and predict on the full datasets. They might take a long time to run. Therefore, we provide sample data `sample_data.json` and `sample_data.info` at the project root for you to test before running on the full datasets.
 
 ### Preprocess dataset (optional)
-Parse `data.json` into `data.csv`.
+Parse `data.json` into `data.csv`. `data.csv` is used only in some [notebooks](./notebooks).
 ```bash
 python3 scripts/parse_data.py -f data/data.json -s data/data.csv
 ```
@@ -87,6 +87,13 @@ python3 scripts/predict.py -d data/dataset3.json -m outputs/xgb.model -s outputs
 3. Commit your changes: `git commit -am 'added some feature'`.
 4. Push to the branch: `git push origin my-new-branch`.
 5. Submit a pull request. :smile:
+
+## Authors
+* [:octocat: @samtjong23](https://github.com/samtjong23)
+* [:octocat: @y33-j3T](https://github.com/y33-j3T)
+* [:octocat: @snah321](https://github.com/snah321)
+* [:octocat: @HaotingS](https://github.com/HaotingS)
+* [:octocat: @kaychiiiii](https://github.com/kaychiiiii)
 
 ## License
 DSA4262 Project is licensed under the [MIT license](./LICENSE).
