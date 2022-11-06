@@ -2,20 +2,20 @@
 Project repository for DSA4262 Sense-making Case Analysis Health and Medicine. 
 
 ## Content
-- [Introduction](#Introduction)
-- [Getting started](#Getting-started)
-- [Usage](#Usage)
-- [Contributing](#Contributing)
-- [License](#License)
+* [Introduction](#Introduction)
+* [Getting started](#Getting-started)
+* [Usage](#Usage)
+* [Contributing](#Contributing)
+* [Authors](#Authors)
+* [License](#License)
 
 ## Introduction
 This project aims to use machine learning to identify m6A RNA modifications from direct RNA-Seq data.
 
 ## Getting started
-
 ### Prerequisites
-- Python 3.8.10
-- If you are using Amazon EC2, you need the instance type to be **t3.xlarge** or above
+* Python 3.8.10
+* For Amazon EC2, use instance type **t3.xlarge** & above
 
 Tested on Ubuntu 20.04.
 
@@ -25,10 +25,18 @@ Tested on Ubuntu 20.04.
 git clone https://github.com/HaotingS/dsa4262_project.git
 cd dsa4262_project
 ```
-2. Install Python packages.
+2. Make sure you are on the right branch, `demo`.
 ```bash
-sudo apt install python3-pip
-pip install -r requirements.txt
+git checkout demo
+```
+3. Create a folder for storing outputs.
+```bash
+mkdir outputs
+```
+4. Install Python packages.
+```bash
+sudo apt install -y python3-pip
+sudo pip install -r requirements.txt
 ```
 
 ### Get dataset
@@ -41,27 +49,28 @@ wget -O data.tgz https://www.dropbox.com/s/j24g0e4fg7kqj43/data.tgz?dl=1
 tar -xzvf data.tgz data && rm data.tgz
 ```
 
+## Usage
+The scripts below parse, train and predict on the full datasets. They might take a long time to run. Therefore, we provide sample data `sample_data.json` and `sample_data.info` at the project root for you to test before running on the full datasets.
+
 ### Preprocess dataset (optional)
-Run [`parse_data.py`](scripts/parse_data.py) to parse `data.json` into `data.csv`. `data.csv` is used in some of the notebooks for analysis and modeling.
+Parse `data.json` into `data.csv`. `data.csv` is used only in some [notebooks](./notebooks).
 ```bash
 python3 scripts/parse_data.py -f data/data.json -s data/data.csv
 ```
 * `-f data/data.json` specifies the RNA-Seq data.
 * `-s data/data.csv` specifies the resulting csv file.
 
-## Usage
-The scripts below trains and predicts on the original datasets. They might take a longer time to run. We have provided a sample data `sample_data.json` at the root of the project directory for you to test run first before running on the full dataset.
-
 ### Train
+Train model using `data.json` and `data.info`.
 ```bash
 python3 scripts/train.py -d data/data.json -l data/data.info -s outputs/xgb.model
 ```
 * `-d data/data.json` specifies the RNA-Seq data.
 * `-l data/data.info` specifies the labels.
-* `-s outputs/xgb.model` specifies the model output.
+* `-s outputs/xgb.model` specifies the resulting model.
 
 ### Predict
-Use a trained model to predict on `dataset1.json`, `dataset2.json`, `dataset3.json`.
+Use trained model to predict on `dataset1.json`, `dataset2.json`, `dataset3.json`.
 ```bash
 python3 scripts/predict.py -d data/dataset1.json -m outputs/xgb.model -s outputs/teamgenono_dataset1.csv
 python3 scripts/predict.py -d data/dataset2.json -m outputs/xgb.model -s outputs/teamgenono_dataset2.csv
@@ -80,6 +89,13 @@ python3 scripts/predict.py -d data/dataset3.json -m outputs/xgb.model -s outputs
 3. Commit your changes: `git commit -am 'added some feature'`.
 4. Push to the branch: `git push origin my-new-branch`.
 5. Submit a pull request. :smile:
+
+## Authors
+* [:octocat: @samtjong23](https://github.com/samtjong23)
+* [:octocat: @y33-j3T](https://github.com/y33-j3T)
+* [:octocat: @snah321](https://github.com/snah321)
+* [:octocat: @HaotingS](https://github.com/HaotingS)
+* [:octocat: @kaychiiiii](https://github.com/kaychiiiii)
 
 ## License
 DSA4262 Project is licensed under the [MIT license](./LICENSE).
