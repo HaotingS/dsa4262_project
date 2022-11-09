@@ -69,7 +69,7 @@ python3 scripts/train.py -d sample_data.json -l sample_data.info -s outputs/samp
 * `-l data/data.info` specifies the labels.
 * `-s outputs/xgb.model` specifies the resulting model.
 
-### Predict
+### Predict (only run these scripts after training the model using `scripts/train.py`)
 Use trained model to predict on `dataset1.json`, `dataset2.json`, `dataset3.json`.
 ```bash
 python3 scripts/predict.py -d data/dataset1.json -m outputs/xgb.model -s outputs/teamgenono_dataset1.csv  # full test dataset 1
